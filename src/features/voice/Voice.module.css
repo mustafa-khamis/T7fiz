@@ -1,0 +1,403 @@
+/* The audio room, laid out like a call: cards for people, a control bar. */
+.room {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-h3);
+}
+
+.headMeta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.count {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.state {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+.state::before {
+  content: '';
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.live {
+  color: var(--color-success);
+}
+
+.warn {
+  color: var(--color-warning);
+}
+
+.roomHelp {
+  margin-block-start: calc(var(--space-2) * -1);
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+}
+
+/* Before joining: one clear action. */
+.prejoin {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-sunken);
+  text-align: center;
+}
+
+.prejoinIcon {
+  display: grid;
+  place-items: center;
+  inline-size: 4rem;
+  block-size: 4rem;
+  border-radius: 50%;
+  background: var(--color-surface-accent);
+  color: var(--color-primary);
+}
+
+.prejoinText {
+  max-inline-size: 30rem;
+  color: var(--color-text-muted);
+  line-height: var(--leading-small);
+}
+
+/* People */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tile {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: var(--space-2);
+  min-block-size: 10.5rem;
+  padding: var(--space-5) var(--space-3) var(--space-4);
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-sunken);
+  text-align: center;
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.tile[data-staff='true'] {
+  background: var(--color-surface-accent);
+}
+
+/* The student reciting to the Sheikh right now. */
+.tile[data-reciting='true'] {
+  border-color: var(--color-primary);
+  background: var(--color-surface-accent);
+}
+
+.recitingTag {
+  padding: 0 var(--space-2);
+  border-radius: 999px;
+  background: var(--color-success);
+  color: var(--color-surface);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+/* Who is talking: a coloured frame and moving bars (never colour alone). */
+.tile[data-speaking='true'] {
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 4px rgb(47 107 69 / 0.18);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  inline-size: 4.5rem;
+  block-size: 4.5rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.tile[data-speaking='true'] .avatar {
+  box-shadow: 0 0 0 4px var(--color-surface), 0 0 0 7px var(--color-success);
+}
+
+.tileName {
+  max-inline-size: 100%;
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tileMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: 1.25rem;
+}
+
+.roleTag {
+  padding: 0 var(--space-2);
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+.micBadge,
+.handBadge {
+  position: absolute;
+  inset-block-start: var(--space-2);
+  display: grid;
+  place-items: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  border-radius: 50%;
+}
+
+.micBadge {
+  inset-inline-end: var(--space-2);
+  background: var(--color-danger-surface);
+  color: var(--color-danger);
+}
+
+.micBadge[data-on='true'] {
+  background: var(--color-success-surface);
+  color: var(--color-success);
+}
+
+.handBadge {
+  inset-inline-start: var(--space-2);
+  background: var(--color-warning-surface);
+  color: var(--color-warning);
+}
+
+/* Sound bars: still and low when silent, moving while the person speaks. */
+.bars {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  block-size: 1.25rem;
+}
+
+.bars span {
+  inline-size: 3px;
+  block-size: 100%;
+  border-radius: 2px;
+  background: var(--color-border-strong);
+  transform: scaleY(0.25);
+  transform-origin: center;
+}
+
+.bars[data-active='true'] span {
+  background: var(--color-success);
+  animation: talk 0.9s ease-in-out infinite;
+}
+
+.bars[data-active='true'] span:nth-child(2) {
+  animation-delay: -0.45s;
+}
+
+.bars[data-active='true'] span:nth-child(3) {
+  animation-delay: -0.2s;
+}
+
+.bars[data-active='true'] span:nth-child(4) {
+  animation-delay: -0.65s;
+}
+
+@keyframes talk {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* Staff: raised hands waiting for the floor, and who holds it. */
+.hands {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-warning-surface);
+}
+
+.handsTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+}
+
+.list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-block: var(--space-2);
+}
+
+.speakers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.speakersLabel {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+/* Control bar: round buttons with their names underneath. */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.control {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-1);
+  min-inline-size: 5.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.control:disabled {
+  cursor: default;
+}
+
+.controlIcon {
+  display: grid;
+  place-items: center;
+  inline-size: 3.5rem;
+  block-size: 3.5rem;
+  border-radius: 50%;
+  background: var(--color-surface-sunken);
+  color: var(--color-text);
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+
+.control:hover:not(:disabled) .controlIcon {
+  background: var(--color-surface-accent);
+}
+
+.control:focus-visible {
+  outline: none;
+}
+
+.control:focus-visible .controlIcon {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.control[data-tone='on'] .controlIcon {
+  background: var(--color-success);
+  color: var(--color-surface);
+}
+
+.control[data-tone='off'] .controlIcon {
+  background: var(--color-danger-surface);
+  color: var(--color-danger);
+}
+
+.control[data-tone='hand'] .controlIcon {
+  background: var(--color-warning);
+  color: var(--color-surface);
+}
+
+.control[data-tone='disabled'] {
+  color: var(--color-text-muted);
+}
+
+.control[data-tone='leave'] .controlIcon {
+  inline-size: 4.25rem;
+  border-radius: 999px;
+  background: var(--color-danger);
+  color: var(--color-surface);
+}
+
+.control[data-tone='leave']:hover .controlIcon {
+  background: var(--color-danger);
+  filter: brightness(0.92);
+}
+
+.controlLabel {
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bars[data-active='true'] span {
+    animation: none;
+    transform: scaleY(0.8);
+  }
+
+  .tile,
+  .controlIcon {
+    transition: none;
+  }
+}

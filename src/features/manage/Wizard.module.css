@@ -1,0 +1,125 @@
+.card {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.stepTitle {
+  font-size: var(--text-h2);
+}
+
+.stepTitle:focus {
+  outline: none;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--color-border);
+}
+
+/* Joining choices as cards: each says what it means for students. */
+.choices {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  margin-block-end: var(--space-2);
+  font-weight: 600;
+}
+
+.choice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  cursor: pointer;
+}
+
+.choice[data-selected='true'] {
+  border: 2px solid var(--color-primary);
+  background: var(--color-surface-accent);
+}
+
+.choice:has(.radio:focus-visible) {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.radio {
+  flex: none;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  margin-block-start: 0.15rem;
+  accent-color: var(--color-primary);
+}
+
+.choiceText {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.choiceTitle {
+  font-weight: 700;
+}
+
+.choiceHelp {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+}
+
+.review {
+  display: grid;
+  margin: 0;
+}
+
+.reviewRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-1) var(--space-3);
+  padding-block: var(--space-3);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.reviewLabel {
+  grid-column: 1;
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+.reviewValue {
+  grid-column: 1;
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+}
+
+.reviewEdit {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  margin: 0;
+}
+
+.reviewDays {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

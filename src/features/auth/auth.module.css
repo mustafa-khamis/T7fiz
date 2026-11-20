@@ -1,0 +1,186 @@
+.screen {
+  display: grid;
+  gap: var(--space-5);
+}
+
+/* On wider screens the form sits on a card; on phones it uses the full width. */
+@media (min-width: 600px) {
+  .screen {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+.header {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.title {
+  font-size: var(--text-h1);
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.formActions {
+  display: grid;
+  gap: var(--space-3);
+  margin-block-start: var(--space-2);
+}
+
+.inlineLink {
+  justify-self: start;
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+
+.labelLink {
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-block-start: 1px solid var(--color-border);
+}
+
+.footer {
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--color-border);
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+}
+
+.status {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+}
+
+.muted {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+}
+
+.fieldset {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  padding: 0;
+  margin-block-end: var(--space-1);
+  font-weight: 600;
+  font-size: var(--text-small);
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.choice {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-block-size: 3.5rem;
+  padding-inline: var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+
+.choice:hover {
+  border-color: var(--color-text-muted);
+}
+
+.choice:has(input:checked) {
+  border: 2px solid var(--color-primary);
+  padding-inline: calc(var(--space-4) - 1px);
+  background: var(--color-surface-accent);
+}
+
+.choice:has(input:focus-visible) {
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
+  border-color: var(--color-focus);
+}
+
+.fieldset[data-invalid='true'] .choice:not(:has(input:checked)) {
+  border-color: var(--color-danger);
+}
+
+.choice input {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  margin: 0;
+  accent-color: var(--color-primary);
+  flex: none;
+}
+
+.choice input:focus-visible {
+  outline: none;
+}
+
+.choiceLabel {
+  font-weight: 600;
+}
+
+.choiceCheck {
+  margin-inline-start: auto;
+  color: var(--color-primary);
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.choice:has(input:checked) .choiceCheck {
+  opacity: 1;
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--text-small);
+  font-weight: 500;
+  line-height: var(--leading-small);
+  color: var(--color-danger);
+}
+
+.error svg {
+  flex: none;
+  margin-block-start: 0.2em;
+}
+
+.symbol {
+  margin-block-end: var(--space-2);
+}

@@ -1,0 +1,113 @@
+/* Global base styles. Components use CSS Modules; only resets and element defaults live here. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--color-primary);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Directional icons (arrows) point the reading way. */
+[dir='rtl'] .icon-mirror {
+  transform: scaleX(-1);
+}
+
+/* Letter-spacing breaks Arabic joining; never apply it to Arabic text. */
+:lang(ar) {
+  letter-spacing: 0;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--space-4);
+  inset-block-start: -10rem;
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+  inset-block-start: var(--space-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

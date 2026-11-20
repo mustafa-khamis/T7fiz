@@ -1,0 +1,228 @@
+.container {
+  max-inline-size: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  padding-block: var(--space-8) var(--space-7);
+}
+
+.heroTitle {
+  max-inline-size: 18ch;
+  font-size: clamp(2rem, 5vw + 0.5rem, var(--text-display));
+  line-height: var(--leading-display);
+  font-weight: 700;
+}
+
+.lead {
+  max-inline-size: var(--reading-max);
+  margin-block-start: var(--space-5);
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-start: var(--space-6);
+}
+
+.horizon {
+  inline-size: 100%;
+  block-size: 48px;
+  margin-block-start: var(--space-8);
+  color: var(--color-decor);
+}
+
+/* Sections */
+.section {
+  padding-block: var(--space-8);
+  outline: none;
+}
+
+.sunken {
+  background: var(--color-surface-sunken);
+}
+
+.sectionTitle {
+  font-size: var(--text-h2);
+}
+
+.sectionIntro {
+  max-inline-size: var(--reading-max);
+  margin-block-start: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.split {
+  display: grid;
+  gap: var(--space-5) var(--space-8);
+}
+
+@media (min-width: 960px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    align-items: start;
+  }
+}
+
+.prose {
+  display: grid;
+  gap: var(--space-4);
+  max-inline-size: var(--reading-max);
+}
+
+/* Workflow steps: columns separated by hairlines, not cards */
+.steps {
+  display: grid;
+  gap: var(--space-6);
+  margin: var(--space-7) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.stepNumber {
+  font-size: var(--text-h1);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.stepTitle {
+  margin-block-start: var(--space-2);
+  font-size: var(--text-h3);
+}
+
+.stepBody {
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 840px) {
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  .step {
+    padding-block-start: 0;
+    padding-inline: var(--space-5);
+    border-block-start: 0;
+    border-inline-start: 1px solid var(--color-border);
+  }
+
+  .step:first-child {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+}
+
+/* Structure: indented levels joined by a line on the inline-start side */
+.tree {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.treeLevel {
+  position: relative;
+  margin-inline-start: calc(var(--depth) * var(--space-5));
+  padding-block: var(--space-3);
+  padding-inline-start: var(--space-5);
+  border-inline-start: 2px solid var(--color-decor);
+}
+
+.treeLevel + .treeLevel {
+  margin-block-start: var(--space-1);
+}
+
+.treeName {
+  font-weight: 600;
+}
+
+.treeBody {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+}
+
+@media (max-width: 479px) {
+  .treeLevel {
+    margin-inline-start: calc(var(--depth) * var(--space-3));
+  }
+}
+
+/* Paths */
+.paths {
+  display: grid;
+  gap: var(--space-4);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 720px) {
+  .paths {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.path {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.pathFeatured {
+  background: var(--color-surface-accent);
+  border-color: transparent;
+}
+
+.pathAudience {
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+.pathTitle {
+  font-size: var(--text-h3);
+}
+
+.pathBody {
+  color: var(--color-text-muted);
+}
+
+.pathFeatured .pathBody {
+  color: var(--color-text);
+}
+
+.pathFooter {
+  margin-block-start: auto;
+  padding-block-start: var(--space-4);
+}
+
+.pathPending {
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+  color: var(--color-text-muted);
+}
+
+/* Accent text is 4.4:1 on sand; use muted text (4.9:1) on the featured path. */
+.pathFeatured .pathAudience {
+  color: var(--color-text-muted);
+}

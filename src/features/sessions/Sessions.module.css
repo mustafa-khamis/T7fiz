@@ -1,0 +1,236 @@
+.page {
+  display: grid;
+  gap: var(--space-6);
+  max-inline-size: 60rem;
+  margin-inline: auto;
+  padding: var(--space-7) var(--gutter) 0;
+}
+
+.breadcrumb {
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+}
+
+.header {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.title {
+  font-size: var(--text-h1);
+}
+
+.muted {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+/* The student's stage: one clear thing to do at a time. */
+.stage {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: center;
+  padding: var(--space-6) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.stage > :global(*) {
+  max-inline-size: 32rem;
+}
+
+.stageTitle {
+  font-size: var(--text-h2);
+  font-weight: 700;
+}
+
+.position {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-1);
+  color: var(--color-text-muted);
+}
+
+.positionNumber {
+  font-size: var(--text-display);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.turn {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: center;
+  inline-size: 100%;
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-success-surface);
+}
+
+.clock {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.form {
+  display: grid;
+  gap: var(--space-3);
+  inline-size: 100%;
+  text-align: start;
+}
+
+/* Sheikh's control room. */
+.staffGrid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 900px) {
+  .staffGrid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: start;
+  }
+
+  .staffGrid > .panel:first-child {
+    grid-row: span 2;
+  }
+}
+
+.panel,
+.record {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.record {
+  border-color: var(--color-primary);
+}
+
+.panelHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.panelTitle {
+  font-size: var(--text-h3);
+}
+
+.current {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-accent);
+}
+
+.line {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-inline-start: var(--space-5);
+}
+
+.line li::marker {
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.confirm {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-danger-surface);
+}
+
+.rows {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-3);
+  padding-block: var(--space-2);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.row:last-child {
+  border-block-end: 0;
+}
+
+.inlineSelect {
+  min-block-size: 2.5rem;
+  padding-inline: var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--text-small);
+}
+
+.inlineSelect:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.range {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.legend {
+  padding-inline: var(--space-1);
+  font-weight: 600;
+  font-size: var(--text-small);
+}
+
+.rangeGrid {
+  display: grid;
+  gap: var(--space-3);
+  inline-size: 100%;
+}
+
+@media (min-width: 560px) {
+  .rangeGrid {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+
+  .rangeGrid.even {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

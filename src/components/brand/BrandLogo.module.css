@@ -1,0 +1,36 @@
+.logo {
+  display: inline-block;
+  position: relative;
+  flex: none;
+}
+
+.logo img {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  max-inline-size: none;
+}
+
+.onDark {
+  visibility: hidden;
+}
+
+/* Dark version when the system is dark (unless the user chose light), or when the user chose dark. */
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .onLight {
+    visibility: hidden;
+  }
+
+  :global(:root:not([data-theme='light'])) .onDark {
+    visibility: visible;
+  }
+}
+
+:global(:root[data-theme='dark']) .onLight {
+  visibility: hidden;
+}
+
+:global(:root[data-theme='dark']) .onDark {
+  visibility: visible;
+}

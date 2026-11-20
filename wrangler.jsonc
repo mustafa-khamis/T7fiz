@@ -1,0 +1,13 @@
+// Cloudflare Workers (static assets) deployment of the T7fiz website.
+// Cloudflare: Root directory = t7fiz-frontend, Build command = npm run build,
+// Deploy command = npx wrangler deploy. The API is hosted separately: set
+// VITE_API_BASE_URL (build variable) to its https origin.
+{
+  "name": "t7fiz-web",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    // Client-side routes (/circles/…, /sessions/…) fall back to index.html.
+    "not_found_handling": "single-page-application"
+  }
+}

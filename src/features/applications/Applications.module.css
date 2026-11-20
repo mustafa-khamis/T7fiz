@@ -1,0 +1,346 @@
+.page {
+  display: grid;
+  gap: var(--space-6);
+  max-inline-size: 46rem;
+  margin-inline: auto;
+  padding: var(--space-7) var(--gutter) var(--space-8);
+}
+
+.header {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.title {
+  font-size: var(--text-h1);
+}
+
+.lead {
+  font-size: 1.0625rem;
+  color: var(--color-text-muted);
+}
+
+.breadcrumb,
+.hint {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.section {
+  display: grid;
+  gap: var(--space-4);
+  padding-block-start: var(--space-5);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.sectionTitle {
+  font-size: var(--text-h3);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.label {
+  font-weight: 600;
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.textarea {
+  inline-size: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: max(1rem, 16px);
+  line-height: var(--leading-body);
+  resize: vertical;
+}
+
+.textarea:focus-visible {
+  outline: none;
+  border-color: var(--color-focus);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+.row2 {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 600px) {
+  .row2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.alignEnd {
+  align-self: end;
+}
+
+.qualification {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.qualification legend {
+  padding-inline: var(--space-2);
+}
+
+/* ---- Recording ---------------------------------------------------------------- */
+.recorder {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+}
+
+.recording {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.recDot {
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  border-radius: 50%;
+  background: var(--color-danger);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recDot {
+    animation: none;
+  }
+}
+
+.recorded {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.player {
+  inline-size: 100%;
+  max-inline-size: 32rem;
+}
+
+.fileRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+/* A styled label around a native file input (keyboard and screen readers keep the input). */
+.fileButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 2.25rem;
+  padding-inline: var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font-size: var(--text-small);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.fileButton:hover {
+  background: var(--color-surface-sunken);
+}
+
+.fileButton input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.fileButton:has(input:focus-visible) {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* ---- Code of conduct ---------------------------------------------------------- */
+.conduct {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-inline-start: var(--space-5);
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.check input {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  margin-block-start: 0.2rem;
+  accent-color: var(--color-primary);
+  flex: none;
+}
+
+.stickyActions {
+  position: sticky;
+  inset-block-end: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+  border-block-start: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+/* ---- Read-only ------------------------------------------------------------------ */
+.facts {
+  display: grid;
+  gap: var(--space-3) var(--space-5);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+  margin: 0;
+}
+
+.facts dt {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.prose {
+  white-space: pre-line;
+}
+
+.list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-inline-start: var(--space-5);
+}
+
+.timeline {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-inline-start: 2px solid var(--color-border);
+}
+
+.timeline li {
+  position: relative;
+  display: grid;
+  gap: var(--space-1);
+  padding-inline-start: var(--space-5);
+}
+
+.timeline li::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: -0.4rem;
+  inset-block-start: 0.45rem;
+  inline-size: 0.7rem;
+  block-size: 0.7rem;
+  border-radius: 50%;
+  background: var(--color-decor);
+}
+
+.timeline li[data-internal]::before {
+  background: var(--color-border-strong);
+}
+
+.eventHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: baseline;
+}
+
+.reviewPanel {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.steps {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding-inline-start: var(--space-5);
+}
+
+.steps li {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.steps span {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.rows {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-3);
+  padding-block: var(--space-3);
+  border-block-end: 1px solid var(--color-border);
+}

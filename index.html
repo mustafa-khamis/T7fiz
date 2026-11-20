@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Brand icons (T7fiz-Logo-Kit/03_favicon). favicon.svg switches to sand colours in dark browsers. -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f7f2ea" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#30231d" media="(prefers-color-scheme: dark)" />
+    <meta name="apple-mobile-web-app-title" content="تحفيظ" />
+    <meta name="application-name" content="تحفيظ" />
+    <meta name="description" content="منصة تجمع الشيخ وطلابه: تسميع الحفظ الجديد، ومراجعة المحفوظ مع الزملاء، ومواعيد ثابتة للحلقة." />
+    <!-- Social sharing (T7fiz-Logo-Kit/05_social) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="تحفيظ — T7fiz" />
+    <meta property="og:title" content="تحفيظ — حلقات تحفيظ القرآن الكريم" />
+    <meta property="og:description" content="حلقة التحفيظ بنظامها المعروف، أينما كنت: تسميع، ومراجعة، ومواعيد ثابتة." />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="ar_AR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>تحفيظ — حلقات تحفيظ القرآن الكريم</title>
+    <script>
+      // Apply the saved language, direction, and theme before first paint to
+      // avoid a flash of the wrong layout. React takes over after loading.
+      (function () {
+        try {
+          var root = document.documentElement;
+          var locale = localStorage.getItem('t7fiz.locale');
+          if (locale === 'en') {
+            root.lang = 'en';
+            root.dir = 'ltr';
+          }
+          var theme = localStorage.getItem('t7fiz.theme');
+          if (theme === 'light' || theme === 'dark') root.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>يتطلب تحفيظ تفعيل JavaScript. T7fiz requires JavaScript.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

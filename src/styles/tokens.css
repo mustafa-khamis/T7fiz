@@ -1,0 +1,171 @@
+/*
+ * T7fiz design tokens. Source of truth: docs/DESIGN_SYSTEM.md.
+ * Brand colours from T7fiz-Logo-Kit: Deep Camel Brown #6B422E, Warm Brown #8B5E43,
+ * Sand Beige #D8BE9A, Warm Cream #F7F2EA, Dark Espresso #30231D. All text pairs meet WCAG AA.
+ * Flutter mirrors these in t7fiz/lib/core/theme/app_tokens.dart — change both together.
+ */
+
+:root {
+  /* Color — light */
+  --color-bg: #f7f2ea;
+  --color-surface: #fffdf9;
+  --color-surface-sunken: #efe6da;
+  --color-surface-accent: #e8dccb;
+  --color-border: #dccdbb;
+  --color-border-strong: #8c7663;
+  --color-text: #30231d;
+  --color-text-muted: #6b5a4d;
+  --color-primary: #6b422e;
+  --color-primary-hover: #563424;
+  --color-on-primary: #f7f2ea;
+  --color-accent: #8b5e43;
+  --color-decor: #d8be9a;
+  --color-success: #2f6b45;
+  --color-success-surface: #e4eee6;
+  --color-warning: #8a5a00;
+  --color-warning-surface: #f5ead3;
+  --color-danger: #a3362a;
+  --color-danger-surface: #f6e2de;
+  --color-info: #2e5e73;
+  --color-info-surface: #e0ebef;
+  --color-focus: #6b422e;
+  --color-focus-ring: rgb(107 66 46 / 0.24);
+  --color-skeleton: #ebe1d4;
+  --color-skeleton-highlight: rgb(255 253 249 / 0.4);
+  --color-danger-ring: rgb(163 54 42 / 0.2);
+  --shadow-card: 0 1px 2px rgb(42 33 28 / 0.06), 0 8px 24px rgb(42 33 28 / 0.06);
+
+  /* Typography */
+  --font-arabic: 'IBM Plex Sans Arabic', 'Inter Variable', system-ui, sans-serif;
+  --font-latin: 'Inter Variable', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-ui: var(--font-arabic);
+
+  --text-display: 2.5rem;
+  --text-h1: 2rem;
+  --text-h2: 1.5rem;
+  --text-h3: 1.25rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-micro: 0.75rem;
+
+  --leading-display: 1.35;
+  --leading-heading: 1.45;
+  --leading-body: 1.75;
+  --leading-small: 1.7;
+
+  /* Space (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Shape & elevation */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-overlay: 0 8px 24px rgb(32 26 23 / 0.14), 0 1px 3px rgb(32 26 23 / 0.1);
+
+  /* Layout */
+  --content-max: 75rem;
+  --reading-max: 68ch;
+  --gutter: var(--space-4);
+  --control-height: 3rem;
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  color-scheme: light;
+}
+
+/* English uses Inter first and tighter line heights. */
+:root:lang(en) {
+  --font-ui: var(--font-latin);
+  --leading-display: 1.15;
+  --leading-heading: 1.25;
+  --leading-body: 1.5;
+  --leading-small: 1.45;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --gutter: var(--space-5);
+  }
+}
+@media (min-width: 960px) {
+  :root {
+    --gutter: var(--space-6);
+  }
+}
+
+/* Dark — deep earth, never pure black. Applied for the system preference unless the user chose light. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: #30231d;
+    --color-surface: #3a2b24;
+    --color-surface-sunken: #261c17;
+    --color-surface-accent: #47362d;
+    --color-border: #4a3a31;
+    --color-border-strong: #9a8573;
+    --color-text: #f7f2ea;
+    --color-text-muted: #cdb9a3;
+    --color-primary: #d8be9a;
+    --color-primary-hover: #e6d2b5;
+    --color-on-primary: #30231d;
+    --color-accent: #d8be9a;
+    --color-decor: #8b5e43;
+    --color-success: #8ccb9c;
+    --color-success-surface: #1f2e23;
+    --color-warning: #e0b05a;
+    --color-warning-surface: #33281a;
+    --color-danger: #f09a8c;
+    --color-danger-surface: #3a211d;
+    --color-info: #8cc0d6;
+    --color-info-surface: #1c2a30;
+    --color-focus: #e8dccb;
+    --color-focus-ring: rgb(229 221 211 / 0.28);
+    --color-skeleton: #3f2f27;
+    --color-skeleton-highlight: rgb(255 255 255 / 0.06);
+    --color-danger-ring: rgb(238 138 124 / 0.28);
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
+    --shadow-overlay: 0 8px 24px rgb(0 0 0 / 0.45);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #30231d;
+  --color-surface: #3a2b24;
+  --color-surface-sunken: #261c17;
+  --color-surface-accent: #47362d;
+  --color-border: #4a3a31;
+  --color-border-strong: #9a8573;
+  --color-text: #f7f2ea;
+  --color-text-muted: #cdb9a3;
+  --color-primary: #d8be9a;
+  --color-primary-hover: #e6d2b5;
+  --color-on-primary: #30231d;
+  --color-accent: #d8be9a;
+  --color-decor: #8b5e43;
+  --color-success: #8ccb9c;
+  --color-success-surface: #1f2e23;
+  --color-warning: #e0b05a;
+  --color-warning-surface: #33281a;
+  --color-danger: #f09a8c;
+  --color-danger-surface: #3a211d;
+  --color-info: #8cc0d6;
+  --color-info-surface: #1c2a30;
+  --color-focus: #e8dccb;
+  --color-focus-ring: rgb(229 221 211 / 0.28);
+  --color-skeleton: #3f2f27;
+  --color-skeleton-highlight: rgb(255 255 255 / 0.06);
+  --color-danger-ring: rgb(238 138 124 / 0.28);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
+  --shadow-overlay: 0 8px 24px rgb(0 0 0 / 0.45);
+  color-scheme: dark;
+}

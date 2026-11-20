@@ -1,0 +1,237 @@
+.header {
+  position: relative;
+  z-index: 10;
+  border-block-end: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-block-size: 4.25rem;
+  max-inline-size: var(--content-max);
+  margin-inline: auto;
+  padding: var(--space-3) var(--gutter);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-md);
+  padding-block: var(--space-1);
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.sections {
+  display: none;
+  gap: var(--space-5);
+  margin-inline-start: var(--space-5);
+  font-size: var(--text-small);
+}
+
+.sections a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.sections a:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-inline-start: auto;
+}
+
+.toolButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 2.25rem;
+  min-inline-size: 2.25rem;
+  padding-inline: var(--space-3);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  cursor: pointer;
+}
+
+.toolButton:hover {
+  background: var(--color-surface-sunken);
+  color: var(--color-text);
+}
+
+.iconButton {
+  padding-inline: 0;
+}
+
+/* On narrow phones keep one auth action; "Create account" is reachable from sign-in. */
+.signUp {
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .signUp {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 840px) {
+  .sections {
+    display: flex;
+  }
+}
+
+/* ---- Signed-in navigation ----------------------------------------------------- */
+.signedIn {
+  display: flex;
+  align-items: center;
+}
+
+.wideNav {
+  display: none;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 2.5rem;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+
+.navLink:hover {
+  background: var(--color-surface-sunken);
+  color: var(--color-text);
+}
+
+/* The current page: a straight bar on the header's bottom edge (not a curved shadow inside the rounded link). */
+.navLink::after {
+  content: '';
+  position: absolute;
+  inset-inline: var(--space-3);
+  /* Header row is 4.25rem and the link 2.5rem, centred: the bar sits on the header's bottom edge. */
+  inset-block-end: calc((2.5rem - 4.25rem) / 2);
+  block-size: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.navLink[aria-current='page'] {
+  color: var(--color-text);
+}
+
+.navLink[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+.navLink[aria-current='page']:hover {
+  background: transparent;
+}
+
+.navLink:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.wideOnly {
+  display: none;
+}
+
+.menuPanel {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 100%;
+  display: grid;
+  padding: var(--space-2) var(--gutter) var(--space-4);
+  border-block-end: 1px solid var(--color-border);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-overlay);
+}
+
+.menuLink {
+  display: flex;
+  align-items: center;
+  min-block-size: 3rem;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.menuLink:hover {
+  background: var(--color-surface-sunken);
+}
+
+.menuLink[aria-current='page'] {
+  background: var(--color-surface-accent);
+  font-weight: 700;
+}
+
+@media (min-width: 720px) {
+  .wideNav {
+    display: flex;
+    margin-inline-start: var(--space-4);
+  }
+
+  .wideOnly {
+    display: inline-flex;
+  }
+
+  .menuButton,
+  .menuPanel {
+    display: none;
+  }
+}
+
+/* Notifications bell: a count badge on the icon's top inline-end corner. */
+.bell {
+  position: relative;
+  text-decoration: none;
+}
+
+.bell[aria-current='page'] {
+  color: var(--color-primary);
+  background: var(--color-surface-sunken);
+}
+
+.badge {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: -0.15rem;
+  min-inline-size: 1.15rem;
+  block-size: 1.15rem;
+  padding-inline: 0.25rem;
+  border-radius: 999px;
+  background: var(--color-danger);
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.15rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 0 0 2px var(--color-bg);
+}

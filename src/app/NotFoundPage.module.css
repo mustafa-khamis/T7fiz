@@ -1,0 +1,273 @@
+/* 404 — a dusk desert with a guiding star. Colours come from the theme tokens,
+   so light shows dusk and dark shows night. */
+.page {
+  --sky-top: #e9dfd2;
+  --sky-bottom: #f8f5f0;
+  --dune-far: #d9cbb9;
+  --dune-mid: #c8b49c;
+  --dune-near: #b39780;
+  --print: rgb(64 49 42 / 0.35);
+  --star-line: #7a5f48;
+  --star-fill: rgb(255 253 249 / 0.7);
+  --star-glow: rgb(179 151 128 / 0.35);
+  --sky-star: #b39780;
+
+  display: grid;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .page {
+    --sky-top: #120e0c;
+    --sky-bottom: #1c1714;
+    --dune-far: #2a221d;
+    --dune-mid: #342a24;
+    --dune-near: #43362e;
+    --print: rgb(0 0 0 / 0.45);
+    --star-line: #d2b79e;
+    --star-fill: rgb(37 30 26 / 0.85);
+    --star-glow: rgb(210 183 158 / 0.28);
+    --sky-star: #f2ece4;
+  }
+}
+
+:global(:root[data-theme='dark']) .page {
+  --sky-top: #120e0c;
+  --sky-bottom: #1c1714;
+  --dune-far: #2a221d;
+  --dune-mid: #342a24;
+  --dune-near: #43362e;
+  --print: rgb(0 0 0 / 0.45);
+  --star-line: #d2b79e;
+  --star-fill: rgb(37 30 26 / 0.85);
+  --star-glow: rgb(210 183 158 / 0.28);
+  --sky-star: #f2ece4;
+}
+
+/* ---- Scene ------------------------------------------------------------------ */
+.scene {
+  --px: 0;
+  --py: 0;
+  position: relative;
+  block-size: clamp(18rem, 52vh, 30rem);
+  background: linear-gradient(to bottom, var(--sky-top), var(--sky-bottom));
+}
+
+.sky {
+  position: absolute;
+  inset: 0 0 35% 0;
+  inline-size: 100%;
+  block-size: 65%;
+  transform: translate(calc(var(--px) * -6px), calc(var(--py) * -4px));
+}
+
+.skyStar {
+  fill: var(--sky-star);
+  animation: twinkle 4.2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.starWrap {
+  position: absolute;
+  inset-block-start: 8%;
+  inset-inline-start: 50%;
+  inline-size: clamp(11rem, 34vw, 15rem);
+  aspect-ratio: 1;
+  translate: -50% 0;
+  transform: translate(calc(var(--px) * 18px), calc(var(--py) * 12px));
+  transition: transform 400ms var(--ease-standard);
+  filter: drop-shadow(0 0 28px var(--star-glow));
+}
+
+:global([dir='rtl']) .starWrap {
+  translate: 50% 0;
+}
+
+.star {
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+}
+
+.ringOuter {
+  fill: none;
+  stroke: var(--star-line);
+  stroke-width: 1;
+  opacity: 0.35;
+}
+
+.ringSpin {
+  transform-origin: 120px 120px;
+  animation: spin 60s linear infinite;
+}
+
+.ringDashed {
+  fill: none;
+  stroke: var(--star-line);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 9;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.khatam {
+  fill: var(--star-fill);
+  stroke: var(--star-line);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.khatamInner {
+  fill: none;
+  stroke: var(--star-line);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+
+.core {
+  fill: none;
+  stroke: var(--star-line);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+
+.code {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: clamp(2.25rem, 7vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--star-line);
+  font-variant-numeric: lining-nums;
+}
+
+.dunes {
+  position: absolute;
+  /* Overhang both edges so parallax never reveals the sky behind the sand. */
+  inset-inline-start: -3%;
+  inset-block-end: 0;
+  inline-size: 106%;
+  max-inline-size: none;
+  block-size: 62%;
+}
+
+.duneFar {
+  fill: var(--dune-far);
+  transform: translateX(calc(var(--px) * 6px));
+}
+
+.duneMid {
+  fill: var(--dune-mid);
+  transform: translateX(calc(var(--px) * 12px));
+}
+
+.duneNear {
+  fill: var(--dune-near);
+  transform: translateX(calc(var(--px) * 20px));
+}
+
+.prints {
+  fill: var(--print);
+  transform: translateX(calc(var(--px) * 20px));
+}
+
+/* The dunes meet the page background seamlessly. */
+.scene::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: -1px;
+  block-size: 3rem;
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
+}
+
+/* ---- Text --------------------------------------------------------------------- */
+.content {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+  justify-items: center;
+  max-inline-size: 38rem;
+  margin-inline: auto;
+  padding: var(--space-5) var(--gutter) var(--space-9);
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: var(--text-small);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.title {
+  font-size: clamp(1.75rem, 5vw, var(--text-display));
+  line-height: var(--leading-display);
+}
+
+.body {
+  color: var(--color-text-muted);
+  max-inline-size: 32rem;
+}
+
+.path {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+}
+
+.path code {
+  max-inline-size: 100%;
+  padding: 0.1em 0.5em;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-sunken);
+  color: var(--color-text);
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.95em;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-block-start: var(--space-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skyStar,
+  .ringSpin {
+    animation: none;
+  }
+
+  .starWrap,
+  .sky,
+  .duneFar,
+  .duneMid,
+  .duneNear,
+  .prints {
+    transform: none;
+    transition: none;
+  }
+}

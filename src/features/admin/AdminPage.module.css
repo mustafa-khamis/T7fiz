@@ -1,0 +1,115 @@
+.page {
+  display: grid;
+  gap: var(--space-6);
+  max-inline-size: 52rem;
+  margin-inline: auto;
+  padding: var(--space-7) var(--gutter) 0;
+}
+
+.header {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.title {
+  font-size: var(--text-h1);
+}
+
+.muted {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+}
+
+.tab {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.sectionTitle {
+  font-size: var(--text-h3);
+}
+
+.grant {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.inline {
+  display: grid;
+  gap: var(--space-3);
+  align-items: end;
+}
+
+@media (min-width: 640px) {
+  .inline {
+    grid-template-columns: 1fr auto;
+  }
+
+  /* Align the button with the input, not with the field's hint/error area. */
+  .inline > button {
+    margin-block-end: 0;
+    align-self: start;
+    margin-block-start: calc(var(--text-small) * var(--leading-small) + var(--space-2));
+  }
+}
+
+.list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.cardHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-3);
+}
+
+.cardTitle {
+  font-size: var(--text-h3);
+}
+
+.meta {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+}
+
+.description {
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+}
+
+.manage {
+  display: grid;
+  gap: var(--space-3);
+  padding-block-start: var(--space-3);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}

@@ -1,0 +1,53 @@
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.avatar,
+.placeholder {
+  inline-size: 4.5rem;
+  block-size: 4.5rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.avatar {
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  background: var(--color-surface-sunken);
+  color: var(--color-text-muted);
+  font-size: var(--text-h3);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* The native input is driven by the button (keeps the styled control accessible). */
+.input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hint {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}

@@ -1,0 +1,194 @@
+/* Permission prompt: a calm card under the header, not a modal. */
+.prompt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  max-inline-size: 60rem;
+  margin: var(--space-4) auto 0;
+  margin-inline: max(var(--gutter), calc((100% - 60rem) / 2));
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  animation: rise 220ms ease-out;
+}
+
+.promptIcon {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border-radius: 50%;
+  background: var(--color-surface-accent);
+  color: var(--color-primary);
+}
+
+.promptText {
+  display: grid;
+  gap: var(--space-1);
+  flex: 1 1 16rem;
+  min-inline-size: 0;
+}
+
+.promptTitle {
+  margin: 0;
+  font-weight: 600;
+}
+
+.promptBody {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+}
+
+.promptActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* In-app alerts for pushes that arrive while T7fiz is in front. */
+.alerts {
+  position: fixed;
+  z-index: 60;
+  inset-block-start: calc(var(--space-4) + env(safe-area-inset-top, 0px));
+  inset-inline-end: var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+  inline-size: min(24rem, calc(100vw - 2 * var(--space-4)));
+  pointer-events: none;
+}
+
+.alert {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-inline-start: 4px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-overlay);
+  pointer-events: auto;
+  animation: slide 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.alert[data-sticky='true'] {
+  border-inline-start-color: var(--color-accent);
+  background: var(--color-surface-accent);
+}
+
+.alertIcon {
+  display: inline-flex;
+  margin-block-start: 0.15em;
+  color: var(--color-primary);
+}
+
+.alert[data-sticky='true'] .alertIcon {
+  animation: ring 1.2s ease-in-out 2;
+}
+
+.alertText {
+  display: grid;
+  gap: var(--space-1);
+  min-inline-size: 0;
+}
+
+.alertTitle {
+  margin: 0;
+  font-weight: 600;
+}
+
+.alertBody {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+  overflow-wrap: anywhere;
+}
+
+.alertActions {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.closeButton {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  margin-inline-start: auto;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background: var(--color-surface-sunken);
+  color: var(--color-text);
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+@media (max-width: 40rem) {
+  .alerts {
+    inset-inline: var(--space-3);
+    inline-size: auto;
+  }
+
+  .prompt {
+    margin-inline: var(--gutter);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+}
+
+@keyframes ring {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  20% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-12deg);
+  }
+  60% {
+    transform: rotate(8deg);
+  }
+  80% {
+    transform: rotate(-4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prompt,
+  .alert,
+  .alert[data-sticky='true'] .alertIcon {
+    animation: none;
+  }
+}

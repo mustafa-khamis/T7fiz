@@ -1,0 +1,13 @@
+.main {
+  outline: none;
+}
+
+.authMain {
+  outline: none;
+  padding: var(--space-7) var(--gutter) var(--space-9);
+}
+
+.authColumn {
+  max-inline-size: 26rem;
+  margin-inline: auto;
+}
