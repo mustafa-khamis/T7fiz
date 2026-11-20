@@ -37,6 +37,9 @@ export const config = Object.freeze({
   apiBaseUrl: normalizeApiBaseUrl(env.VITE_API_BASE_URL),
   // Show "Continue with Google" only when the backend has Google configured.
   googleSignIn: env.VITE_GOOGLE_SIGN_IN === 'true',
+  // Where the live-updates WebSocket connects when the host cannot forward WebSockets
+  // (e.g. Vercel forwarding /api to the API): the API's own origin. Empty = same as the API.
+  realtimeBaseUrl: normalizeApiBaseUrl(env.VITE_REALTIME_URL),
   // Push notifications through Firebase Cloud Messaging (null = off).
   firebase: firebaseConfig(env),
 });

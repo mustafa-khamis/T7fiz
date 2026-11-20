@@ -18,7 +18,7 @@ function contentSecurityPolicy(env) {
       .split(/[\s,]+/)
       .filter(Boolean)
       .map((url) => new URL(url).origin)
-  const api = origins(env.VITE_API_BASE_URL)
+  const api = origins([env.VITE_API_BASE_URL, env.VITE_REALTIME_URL].filter(Boolean).join(' '))
   const apiSockets = api.map((origin) => origin.replace(/^http/, 'ws'))
   const storage = 'https://*.supabase.co'
   // Push notifications: the Firebase SDK registers this browser with FCM (only when configured).

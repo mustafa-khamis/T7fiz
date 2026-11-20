@@ -3,6 +3,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import { useServices } from '../../app/services.jsx';
 import { createApiClient } from '../../lib/api.js';
 import { disablePush } from '../push/push.js';
+import { config } from '../../config/env.js';
 
 const AuthContext = createContext(null);
 
@@ -94,7 +95,7 @@ export function AuthProvider({ children }) {
     () =>
       signedIn && !injectedApi
         ? createRealtimeClient({
-            url: realtimeUrl(apiBaseUrl),
+            url: realtimeUrl(config.realtimeBaseUrl || apiBaseUrl),
             getToken: tokens.get,
             refreshToken: async () => {
               const result = await authClient.refresh();
