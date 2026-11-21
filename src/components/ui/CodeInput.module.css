@@ -1,0 +1,144 @@
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.label {
+  font-weight: 600;
+}
+
+.boxes {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 3.25rem));
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+/* The real input covers the boxes: clicks, taps and paste land on it. */
+.input {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+  font-size: 16px; /* no zoom on iOS */
+  letter-spacing: 3rem;
+  outline: none;
+  z-index: 1;
+}
+
+.input::selection {
+  background: transparent;
+}
+
+.box {
+  display: grid;
+  place-items: center;
+  block-size: 3.5rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    background-color 120ms ease;
+}
+
+.box[data-filled='true'] {
+  border-color: var(--color-text-muted);
+}
+
+.input:focus-visible ~ .box[data-active='true'] {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+
+.input:focus-visible ~ .box[data-active='true'][data-filled='false']::after {
+  content: '';
+  inline-size: 2px;
+  block-size: 1.5rem;
+  background: var(--color-primary);
+  animation: blink 1s steps(1) infinite;
+}
+
+.boxes[data-state='checking'] .box {
+  background: var(--color-surface-sunken);
+  animation: pulse 900ms ease-in-out infinite;
+}
+
+.boxes[data-state='error'] .box {
+  border-color: var(--color-danger);
+}
+
+.boxes[data-state='error'] {
+  animation: shake 320ms ease-in-out;
+}
+
+.boxes[data-state='success'] .box {
+  border-color: var(--color-success);
+  background: var(--color-success-surface);
+}
+
+.hint {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  text-align: center;
+}
+
+.error {
+  margin: 0;
+  color: var(--color-danger);
+  font-size: var(--text-small);
+  text-align: center;
+}
+
+@media (max-width: 24rem) {
+  .boxes {
+    gap: var(--space-1);
+  }
+
+  .box {
+    block-size: 3rem;
+    font-size: 1.25rem;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shake {
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boxes[data-state='error'],
+  .boxes[data-state='checking'] .box,
+  .input:focus-visible ~ .box[data-active='true'][data-filled='false']::after {
+    animation: none;
+  }
+}

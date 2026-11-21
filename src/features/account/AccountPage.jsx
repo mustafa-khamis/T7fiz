@@ -10,7 +10,6 @@ import { validateDisplayName } from '../auth/auth-helpers.js';
 import { Button } from '../../components/ui/Button.jsx';
 import { Alert } from '../../components/ui/Alert.jsx';
 import { errorMessage } from '../../i18n/errors.js';
-import { useServices } from '../../app/services.jsx';
 import { AvatarField } from './AvatarField.jsx';
 import { MyCircles } from './MyCircles.jsx';
 import { AccountBodySkeleton } from './AccountSkeleton.jsx';
@@ -155,29 +154,16 @@ function AccountForm({ me }) {
 
 function VerifyEmailBanner({ email }) {
   const { t } = useI18n();
-  const { authClient } = useServices();
-  const [state, setState] = useState('idle');
-  async function resend() {
-    setState('sending');
-    try {
-      await authClient.resendVerification(email);
-      setState('sent');
-    } catch {
-      setState('failed');
-    }
-  }
   return (
     <Alert
       tone="warning"
       action={
-        state === 'sent' ? null : (
-          <Button variant="secondary" size="sm" onClick={resend} loading={state === 'sending'}>
-            {t('account.verifyResend')}
-          </Button>
-        )
+        <Button variant="secondary" size="sm" to="/check-email" state={{ email, returnTo: '/account' }}>
+          {t('account.verifyEnterCode')}
+        </Button>
       }
     >
-      {state === 'sent' ? t('account.verifyResent') : state === 'failed' ? t('errors.generic') : t('account.verifyBanner')}
+      {t('account.verifyBanner')}
     </Alert>
   );
 }

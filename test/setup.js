@@ -17,6 +17,7 @@ window.scrollTo = () => {};
 afterEach(() => {
   cleanup();
   window.localStorage.clear();
+  window.sessionStorage.clear();
   document.documentElement.removeAttribute('data-theme');
   document.documentElement.lang = 'ar';
   document.documentElement.dir = 'rtl';

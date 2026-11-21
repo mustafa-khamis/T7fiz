@@ -206,7 +206,8 @@ describe('sign up', () => {
     const { authClient } = renderApp('/sign-up');
     await fillForm(user);
     await user.click(screen.getByRole('button', { name: 'إنشاء الحساب' }));
-    expect(await screen.findByRole('heading', { name: 'تحقق من بريدك الإلكتروني' })).toBeTruthy();
+    expect(await screen.findByRole('heading', { name: 'أدخل رمز التأكيد' })).toBeTruthy();
+    expect(screen.getByText(/أرسلنا رمزًا من ٦ أرقام إلى/).textContent).toContain('omar@example.com');
     expect(authClient.register).toHaveBeenCalledWith(
       expect.objectContaining({ email: 'omar@example.com', password: 'long-enough', displayName: 'عمر', gender: 'male', locale: 'ar' }),
     );
@@ -356,14 +357,17 @@ describe('account page', () => {
     expect(api.patch).toHaveBeenCalledWith('/api/v1/me', { displayName: 'فاطمة الزهراء' });
   });
 
-  it('asks unverified users to confirm their email and can resend', async () => {
+  it('asks unverified users to confirm their email with the code', async () => {
     const user = userEvent.setup();
     const authClient = signedIn();
-    renderApp('/account', { authClient, api: createFakeApi({ ...TEST_ME, emailVerified: false }) });
+    const api = createFakeApi({ ...TEST_ME, emailVerified: false });
+    const { router } = renderApp('/account', { authClient, api });
     expect(await screen.findByText(/لم تؤكّد بريدك الإلكتروني بعد/)).toBeTruthy();
-    await user.click(screen.getByRole('button', { name: 'إعادة إرسال رسالة التأكيد' }));
-    expect(await screen.findByText('أرسلنا رسالة التأكيد مرة أخرى.')).toBeTruthy();
-    expect(authClient.resendVerification).toHaveBeenCalledWith(TEST_ME.email);
+    await user.click(screen.getByRole('link', { name: 'أدخل رمز التأكيد' }));
+    await user.type(await screen.findByLabelText('رمز التأكيد'), '123456');
+    // Already signed in: confirmed only, then back to the account.
+    await waitFor(() => expect(authClient.verifyEmailCode).toHaveBeenCalledWith(TEST_ME.email, '123456', false));
+    await waitFor(() => expect(router.state.location.pathname).toBe('/account'));
   });
 
   it('applies a language change saved to the account', async () => {

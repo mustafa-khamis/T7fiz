@@ -116,6 +116,17 @@ export function AuthProvider({ children }) {
       async signIn(email, password) {
         applySession(await authClient.login(email, password), 'SIGNED_IN');
       },
+      /**
+       * Confirms the email with its 6-digit code. Signed-out people (just
+       * registered) are signed in by it; signed-in people are only confirmed.
+       */
+      async verifyEmailCode(email, code) {
+        if (state.status === 'signedIn') {
+          await authClient.verifyEmailCode(email, code, false);
+          return;
+        }
+        applySession(await authClient.verifyEmailCode(email, code, true), 'SIGNED_IN');
+      },
       /** After Google returns to /auth/callback the refresh cookie is set; exchange it for an access token. */
       async completeRedirectSignIn() {
         applySession(await authClient.refresh(), 'SIGNED_IN');

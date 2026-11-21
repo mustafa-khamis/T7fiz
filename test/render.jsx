@@ -41,6 +41,13 @@ export function createFakeAuthClient({ signedIn = false } = {}) {
       session = false;
     }),
     verifyEmail: vi.fn(async () => ({ status: 'verified' })),
+    // "123456" is the right code; a correct code signs in unless signIn is false.
+    verifyEmailCode: vi.fn(async (_email, code, signIn) => {
+      if (code !== '123456') throw new ApiError({ status: 400, code: 'VERIFICATION_CODE_INVALID', details: { attemptsLeft: 4 } });
+      if (!signIn) return { status: 'verified' };
+      session = true;
+      return tokens;
+    }),
     resendVerification: vi.fn(async () => ({ status: 'accepted' })),
     forgotPassword: vi.fn(async () => ({ status: 'accepted' })),
     resetPassword: vi.fn(async () => ({ status: 'password_reset' })),

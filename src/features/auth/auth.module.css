@@ -184,3 +184,13 @@
 .symbol {
   margin-block-end: var(--space-2);
 }
+
+.verify {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.verifyActions {
+  display: flex;
+  justify-content: center;
+}

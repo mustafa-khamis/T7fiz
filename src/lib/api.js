@@ -78,6 +78,8 @@ export function createAuthClient({ baseUrl = '', fetchImpl = (...args) => fetch(
     logout: () => post('/logout', {}),
     logoutAll: (accessToken) => post('/logout-all', undefined, { headers: { Authorization: `Bearer ${accessToken}` } }),
     verifyEmail: (token) => post('/email/verify', { token }),
+    /** The 6-digit code from the email. With signIn, a correct code also starts a session (tokens returned). */
+    verifyEmailCode: (email, code, signIn = true) => post('/email/verify', { email, code, signIn }),
     resendVerification: (email) => post('/email/resend', { email }),
     forgotPassword: (email) => post('/password/forgot', { email }),
     resetPassword: (token, password) => post('/password/reset', { token, password }),
